@@ -2,20 +2,17 @@
 /**
  * Theme Setup
  *
- * Sets up theme defaults and registers support for various WordPress features.
+ * Sets up theme defaults and registers support
+ * for various WordPress features.
  *
  * @package MORPH
  */
 
 namespace MORPH;
 
-/**
- * Sets up theme defaults and registers support
- * for various WordPress features.
- *
- * @return void
- */
-function setup(): void {
+add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
+
+function setup() {
 	// Registers navigation menus for the theme.
 	register_nav_menus(
 		array(
@@ -59,5 +56,3 @@ function setup(): void {
 		)
 	);
 }
-
-add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );

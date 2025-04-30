@@ -11,7 +11,9 @@
 
 namespace MORPH;
 
-function preload_local_fonts(): void {
+add_action( 'wp_head', __NAMESPACE__ . '\preload_local_fonts');
+
+function preload_local_fonts() {
 	$font_families = [];
 
 	if ( empty( $font_families ) ) {
@@ -31,5 +33,3 @@ function preload_local_fonts(): void {
 		}
 	}
 }
-
-add_action( 'wp_head', __NAMESPACE__ . '\preload_local_fonts');
