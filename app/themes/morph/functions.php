@@ -35,4 +35,5 @@ const STYLES_URL = MORPH_THEME_URL . '/assets/styles';
  */
 require_once MORPH_THEME_DIR . '/inc/setup.php';
 require_once MORPH_THEME_DIR . '/inc/enqueue.php';
+require_once MORPH_THEME_DIR . '/inc/body-classes.php';
 require_once MORPH_THEME_DIR . '/inc/preload-local-fonts.php';
