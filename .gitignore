@@ -1,0 +1,23 @@
+# ========================================
+# FOLDERS
+# ========================================
+node_modules
+database
+
+# ========================================
+# FILES
+# ========================================
+.env
+auth.json
+
+# ========================================
+# WordPress
+# ========================================
+app/core
+app/plugins
+app/uploads
+app/logs
+
+# Ignore all themes except `morph`
+app/themes/*
+!app/themes/morph
