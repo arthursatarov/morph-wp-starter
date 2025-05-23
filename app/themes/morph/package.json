@@ -1,5 +1,5 @@
 {
-	"name": "MORPH - WordPress Starter Theme",
+	"name": "morph-wordpress-starter-theme",
 	"version": "0.0.1",
 	"engines": {
 		"node": "^20"
@@ -10,7 +10,7 @@
 		"build": "gulp prod",
 		"clean": "gulp clean",
 		"lint": "run-s lint:*",
-		"lint:styles": "stylelint 'src/styles/**/*.scss"
+		"lint:styles": "stylelint 'src/styles/**/*.scss'"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.21",
