@@ -1,0 +1,89 @@
+// Apply border-box sizing to all elements
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+// Reset margin and padding for all elements
+* {
+	padding: 0;
+	margin: 0;
+}
+
+// Prevent text size adjustments in all browsers
+html {
+	text-size-adjust: none;
+}
+
+// Set core body defaults
+body {
+	min-height: 100vh;
+	line-height: 1.5;
+}
+
+// Avoid text overflows
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+// Improve line wrapping
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+// Ensure media elements are displayed as blocks
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+}
+
+// Make media elements responsive within their containers
+img,
+picture,
+video,
+canvas,
+svg {
+	inline-size: 100%;
+	block-size: auto;
+}
+
+// Inherit font styles for input, button, textarea, and select elements
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+// Set a minimum block size for textareas that do not specify rows
+textarea:not([rows]) {
+	min-block-size: 10em;
+}
+
+// Sets a top margin of 2 times the current font size (2ex)
+// to improve readability of content when scrolling to the anchor.
+:target {
+	scroll-margin-block-start: 5ex;
+}
