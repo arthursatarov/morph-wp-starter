@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "mixins" as mixins;
-@use "tokens" as tokens;
+@use "./mixins" as mixins;
+@use "./tokens" as tokens;
 
 :root {
 	@include mixins.export-css-vars(tokens.$font-family, "font-family");
