@@ -1,17 +1,25 @@
-/// Recursively outputs a Sass map as CSS custom properties (variables).
-///
-/// @param {Map} $map - Token map to convert (can be nested).
-/// @param {String} $prefix [optional] - Prefix for variable names (e.g. "color").
-
 @use "sass:meta";
 
+/// Recursively converts a Sass map into CSS custom properties (variables).
+///
+/// @param {Map} $map - Token map to convert. Can contain nested maps.
+/// @param {String} $prefix - Optional. Prefix for variable names (e.g. "color").
+///
+/// @example
+/// @include mixins.export-css-vars(tokens.$font-family, "font-family");
+
 @mixin export-css-vars($map, $prefix: "") {
+  // Loop through map entries
   @each $key, $value in $map {
     $var-name: if($prefix == "", $key, "#{$prefix}-#{$key}");
 
+    // Recurse if value is a map
     @if meta.type-of($value) == "map" {
       @include export-css-vars($value, $var-name);
-    } @else {
+    }
+
+    // Output CSS variable
+    @else {
       --#{$var-name}: #{$value};
     }
   }
