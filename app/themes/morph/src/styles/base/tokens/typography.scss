@@ -1,0 +1,30 @@
+// Font Family
+$font-family: (
+	"base": "sans-serif",
+	"heading": "sans-serif",
+	"code": "monospace",
+	"accent": "serif",
+);
+
+// Font size
+$font-size: (
+	"xs": 0.75rem,
+	"sm": 0.875rem,
+	"md": 1rem,
+	"lg": 1.5rem,
+);
+
+// Font weight
+$font-weight: (
+	'normal': 400,
+	'semi-bold': 500,
+	'bold': 700,
+);
+
+// Line height
+$leading: (
+	"none": 1,
+	"tight": 1.2,
+	"normal": 1.5,
+	"relaxed": 1.6,
+);

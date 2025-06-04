@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "mixins" as mixins;
+@use "tokens" as tokens;
+
+:root {
+	@include mixins.export-css-vars(tokens.$font-family, "font-family");
+	@include mixins.export-css-vars(tokens.$font-size, "font-size");
+	@include mixins.export-css-vars(tokens.$font-weight, "font-weight");
+	@include mixins.export-css-vars(tokens.$leading, "leading");
+	@include mixins.export-css-vars(tokens.$spacing, "space");
+}
