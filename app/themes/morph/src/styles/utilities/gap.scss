@@ -1,0 +1,7 @@
+@use "../base/tokens" as tokens;
+
+@each $key, $value in tokens.$spacing {
+	.gap-#{$key} {
+		--gap-space: var(--space-#{$key});
+	}
+}
