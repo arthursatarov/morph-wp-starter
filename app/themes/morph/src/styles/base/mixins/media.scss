@@ -1,58 +1,39 @@
 @use "sass:map";
-@use "sass:meta";
+@use "sass:list";
 @use "../tokens" as tokens;
 
-/// Returns the map of breakpoints from design tokens
-@function get-breakpoints() {
-  @return tokens.$breakpoints;
-}
+@mixin media($min: null, $max: null) {
+  $breakpoints: tokens.$breakpoints;
+  $media-query: null;
 
-/// @mixin media-min
-/// Apply styles at or above a given breakpoint (inclusive)
-/// @param {String} $breakpoint - Breakpoint key from tokens.$breakpoints
-@mixin media-min($breakpoint) {
-  $breakpoints: get-breakpoints();
+  @if $min {
+    @if not map.has-key($breakpoints, $min) {
+      @error "media(): unknown min breakpoint `#{$min}`.";
+    }
 
-  @if map.has-key($breakpoints, $breakpoint) {
-    @media (min-width: map.get($breakpoints, $breakpoint)) {
+    $media-query: "(min-width: #{map.get($breakpoints, $min)})";
+  }
+
+  @if $max {
+    @if not map.has-key($breakpoints, $max) {
+      @error "media(): unknown max breakpoint `#{$max}`.";
+    }
+
+    $max-query: "(max-width: calc(#{map.get($breakpoints, $max)} - 0.001em))";
+
+    // Join manually if both min and max
+    @if $media-query {
+      $media-query: "#{$media-query} and #{$max-query}";
+    } @else {
+      $media-query: $max-query;
+    }
+  }
+
+  @if $media-query {
+    @media #{$media-query} {
       @content;
     }
   } @else {
-    @error "media-min(): Unknown breakpoint `#{$breakpoint}`. Available: #{map.keys($breakpoints)}";
-  }
-}
-
-/// @mixin media-max
-/// Apply styles below a given breakpoint (exclusive)
-/// @param {String} $breakpoint - Breakpoint key from tokens.$breakpoints
-@mixin media-max($breakpoint) {
-  $breakpoints: get-breakpoints();
-
-  @if map.has-key($breakpoints, $breakpoint) {
-    @media (max-width: calc(#{map.get($breakpoints, $breakpoint)} - 0.001em)) {
-      @content;
-    }
-  } @else {
-    @error "media-max(): Unknown breakpoint `#{$breakpoint}`. Available: #{map.keys($breakpoints)}";
-  }
-}
-
-/// @mixin media-between
-/// Apply styles between two breakpoints (inclusive min, exclusive max)
-/// @param {String} $min-breakpoint - Lower bound breakpoint
-/// @param {String} $max-breakpoint - Upper bound breakpoint
-@mixin media-between($min-breakpoint, $max-breakpoint) {
-  $breakpoints: get-breakpoints();
-
-  @if not map.has-key($breakpoints, $min-breakpoint) {
-    @error "media-between(): Unknown min breakpoint `#{$min-breakpoint}`.";
-  }
-
-  @if not map.has-key($breakpoints, $max-breakpoint) {
-    @error "media-between(): Unknown max breakpoint `#{$max-breakpoint}`.";
-  }
-
-  @media (min-width: map.get($breakpoints, $min-breakpoint)) and (max-width: calc(#{map.get($breakpoints, $max-breakpoint)} - 0.001em)) {
-    @content;
+    @warn "media(): no valid breakpoints provided.";
   }
 }
