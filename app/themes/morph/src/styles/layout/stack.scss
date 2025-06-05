@@ -1,0 +1,12 @@
+.stack {
+	--stack-space: var(--gap-space, 1rem);
+
+	// Lower specificity for override flexibility
+	:where(&) > * {
+		margin-block: 0;
+	}
+
+	:where(&) > * + * {
+		margin-block-start: var(--stack-space);
+	}
+}

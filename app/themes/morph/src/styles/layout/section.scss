@@ -1,0 +1,12 @@
+@use "../base/mixins" as mixins;
+
+.section {
+	--section-space: var(--space-4xl);
+
+	position: relative;
+	padding-block: var(--section-space, 8rem);
+
+	@include mixins.media("xl") {
+		--section-space: var(--space-5xl);
+	}
+}
