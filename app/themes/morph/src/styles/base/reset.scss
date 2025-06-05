@@ -1,28 +1,56 @@
-// Apply border-box sizing to all elements
+// =======================================
+// Minimal, modern CSS reset.
+// Normalizes box model, spacing, media layout, and typography.
+// Includes accessibility and performance enhancements (system fonts, reduced motion, etc.).
+// =======================================
+
+// ============================
+// Box Model & Defaults
+// ============================
+
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
 
-// Reset margin and padding for all elements
 * {
 	padding: 0;
 	margin: 0;
 }
 
-// Prevent text size adjustments in all browsers
+// ============================
+// Global Element Defaults
+// ============================
+
 html {
 	text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	scroll-behavior: smooth;
+	font-family: system-ui, sans-serif;
 }
 
-// Set core body defaults
+// Sets default layout height and line-height
 body {
-	min-height: 100vh;
+	min-block-size: 100vh;
 	line-height: 1.5;
+	text-rendering: optimizeSpeed;
+	color: #000;
+	background-color: #fff;
+	-webkit-text-size-adjust: 100%;
 }
 
-// Avoid text overflows
+// Prevent horizontal overflow in body
+body,
+html {
+	overflow-x: hidden;
+}
+
+// ============================
+// Typography Wrapping
+// ============================
+
 p,
 h1,
 h2,
@@ -33,7 +61,6 @@ h6 {
 	overflow-wrap: break-word;
 }
 
-// Improve line wrapping
 h1,
 h2,
 h3,
@@ -47,7 +74,10 @@ p {
 	text-wrap: pretty;
 }
 
-// Ensure media elements are displayed as blocks
+// ============================
+// Media Elements
+// ============================
+
 img,
 svg,
 video,
@@ -59,7 +89,6 @@ object {
 	display: block;
 }
 
-// Make media elements responsive within their containers
 img,
 picture,
 video,
@@ -69,21 +98,52 @@ svg {
 	block-size: auto;
 }
 
-// Inherit font styles for input, button, textarea, and select elements
+// ============================
+// Form Elements
+// ============================
+
 input,
 button,
 textarea,
 select {
 	font: inherit;
+	color: inherit;
+	outline: none;
+	background-color: transparent;
+	border: none;
 }
 
-// Set a minimum block size for textareas that do not specify rows
+// Sets a min block size for textarea without rows
 textarea:not([rows]) {
 	min-block-size: 10em;
 }
 
-// Sets a top margin of 2 times the current font size (2ex)
-// to improve readability of content when scrolling to the anchor.
+// Remove tap highlight on touch devices
+*:focus {
+	outline: none;
+}
+
+// ============================
+// Accessibility
+// ============================
+
+// Scroll anchor buffer
 :target {
 	scroll-margin-block-start: 5ex;
+}
+
+// Respect user preference for reduced motion
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
 }
