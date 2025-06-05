@@ -1,0 +1,23 @@
+@use "sass:meta";
+
+/// Outputs a Sass map as CSS custom properties. Supports nested maps recursively.
+///
+/// @param {map} $map - Sass map to convert into CSS variables.
+/// @param {string} $prefix - Optional. Prefix for variable names (used for nested keys).
+
+@mixin export-css-vars($map, $prefix: "") {
+  // Loop through map entries
+  @each $key, $value in $map {
+    $var-name: if($prefix == "", $key, "#{$prefix}-#{$key}");
+
+    // Recurse if value is a map
+    @if meta.type-of($value) == "map" {
+      @include export-css-vars($value, $var-name);
+    }
+
+    // Output CSS variable
+    @else {
+      --#{$var-name}: #{$value};
+    }
+  }
+}

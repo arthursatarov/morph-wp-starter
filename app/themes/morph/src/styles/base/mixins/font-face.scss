@@ -1,0 +1,16 @@
+/// Generates a @font-face declaration with custom font settings.
+///
+/// @param {number} $font-weight - Numeric font weight (e.g. 400, 700).
+/// @param {string} $font-family - Name of the font family.
+/// @param {string} $file-name - File name (without extension) of the font.
+/// @param {string} $font-style - Font style (e.g. "normal", "italic").
+
+@mixin font-face($font-weight, $font-family, $file-name, $font-style) {
+	@font-face {
+		font-family: "#{$font-family}";
+		font-style: #{$font-style};
+		font-weight: $font-weight;
+		src: url("../fonts/#{$file-name}.woff2") format("woff2");
+		font-display: swap;
+	}
+}

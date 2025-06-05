@@ -1,0 +1,21 @@
+@use "../base/mixins" as mixins;
+
+.grid {
+	--grid-cols: 12;
+	--grid-item-min-size: 0;
+	--grid-space: var(--space-md, 1rem);
+	--grid-template: repeat(var(--grid-cols), minmax(var(--grid-item-min-size), 1fr));
+
+	display: grid;
+	grid-template-columns: var(--grid-template);
+	gap: var(--grid-space);
+
+	// By default, grid cell spans across all columns
+	> * {
+		grid-column: 1 / -1;
+	}
+
+	@include mixins.media("xl") {
+		--grid-space: var(--space-xl, 2rem);
+	}
+}
