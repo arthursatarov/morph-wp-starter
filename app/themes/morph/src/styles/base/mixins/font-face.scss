@@ -1,13 +1,9 @@
-/// Defines a custom @font-face rule for a given font family.
-/// Simplifies adding fonts by specifying weight, family, file name, and style.
+/// Generates a @font-face declaration with custom font settings.
 ///
-/// @param {number}  $font-weight - Font weight (e.g., 400, 700).
-/// @param {string}  $font-family - Name of the font family.
-/// @param {string}  $file-name   - Filename (without extension)
-/// @param {string}  $font-style  - Font style (e.g., normal, italic).
-///
-/// @example
-/// @include font-face(400, 'Roboto', 'Roboto_Regular', 'normal');
+/// @param {number} $font-weight - Numeric font weight (e.g. 400, 700).
+/// @param {string} $font-family - Name of the font family.
+/// @param {string} $file-name - File name (without extension) of the font.
+/// @param {string} $font-style - Font style (e.g. "normal", "italic").
 
 @mixin font-face($font-weight, $font-family, $file-name, $font-style) {
 	@font-face {

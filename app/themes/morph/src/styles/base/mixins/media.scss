@@ -2,10 +2,17 @@
 @use "sass:list";
 @use "../tokens" as tokens;
 
+/// Outputs a media query using named breakpoints from the $breakpoints map.
+///
+/// @param {string|null} $min - Optional. Min breakpoint key (e.g. "sm", "md").
+/// @param {string|null} $max - Optional. Max breakpoint key. Uses `-0.001em` to prevent overlap.
+/// @content CSS rules to apply within the generated media query.
+
 @mixin media($min: null, $max: null) {
   $breakpoints: tokens.$breakpoints;
   $media-query: null;
 
+	// Handle minimum breakpoint
   @if $min {
     @if not map.has-key($breakpoints, $min) {
       @error "media(): unknown min breakpoint `#{$min}`.";
@@ -14,14 +21,16 @@
     $media-query: "(min-width: #{map.get($breakpoints, $min)})";
   }
 
+	// Handle maximum breakpoint
   @if $max {
     @if not map.has-key($breakpoints, $max) {
       @error "media(): unknown max breakpoint `#{$max}`.";
     }
 
+		// Slightly reduce max width to avoid overlap with next breakpoint
     $max-query: "(max-width: calc(#{map.get($breakpoints, $max)} - 0.001em))";
 
-    // Join manually if both min and max
+		// Combine min and max if both are set
     @if $media-query {
       $media-query: "#{$media-query} and #{$max-query}";
     } @else {
@@ -29,6 +38,7 @@
     }
   }
 
+	// Output the media query if valid
   @if $media-query {
     @media #{$media-query} {
       @content;
