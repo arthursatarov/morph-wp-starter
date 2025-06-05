@@ -1,12 +1,6 @@
-/// Font Face Definitions
-///
-/// This file defines font faces using the `font-face` mixin.
-/// It ensures consistent font usage and easy maintainability.
-///
-/// Mixin Usage:
-/// @include mixins.font-face($font-weight, $font-family, $file-name, $font-style);
-///
-/// Example:
-/// @include mixins.font-face(400, 'Golos', 'golos-text_regular', 'normal');
-
 @use "./mixins" as mixins;
+
+// =======================================
+// Registers custom fonts using the `font-face` mixin.
+// Centralized place to declare all @font-face rules for the project.
+// =======================================
